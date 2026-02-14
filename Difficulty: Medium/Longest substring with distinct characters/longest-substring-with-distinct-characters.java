@@ -1,0 +1,35 @@
+class Solution {
+    public int longestUniqueSubstr(String s) {
+        // code here
+        HashSet<Character> set=new HashSet<>();
+        int i=0;
+        int j=0;
+        int max=-1;
+        
+        while(j<s.length())
+        {
+            char ch=s.charAt(j);
+            if(!set.contains(ch))
+            {
+                set.add(ch);
+                j++;
+            }
+            else
+            {
+                int l=j-i;
+                max=Math.max(max,l);
+                while(s.charAt(i)!=s.charAt(j))
+                {
+                    set.remove(s.charAt(i));
+                    i++;
+                }
+                i++;
+                j++;
+            }
+        }
+        int l=j-i;
+        max=Math.max(max,l);
+        return max;
+        
+    }
+}
